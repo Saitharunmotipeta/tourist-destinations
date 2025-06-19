@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ state_name }} - Places to Visit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="static/images/logo.jpg" type="image/jpeg">
+       <style>
+    /* Header Styling */
+    header {
+        background: linear-gradient(90deg, rgba(20, 20, 40, 0.95), rgba(40, 40, 60, 0.9));
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo h1 {
+        color: #f5c542;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+        text-align: left;
+    }
+
+    nav .menu {
+        display: flex;
+        gap: 20px;
+    }
+
+    nav .menu a {
+        text-decoration: none;
+        color: #d6efff;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    nav .menu a:hover {
+        color: #ffffff;
+    }
+
+    .logout {
+        background: #ff6b81;
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-weight: 600;
+    }
+
+    .logout:hover {
+        background: #ff4757;
+    }
+
+    @media (max-width: 768px) {
+        .header-container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .menu {
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    /* Body and Content Styling */
+    body {
+        background: url('{{ url_for("static", filename="images/bg1.jpg") }}') no-repeat center center fixed;
+        background-size: cover;
+        color: #3a2f2f;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 15px; /* Adjusted padding to prevent overlap with header */
+        font-family: 'Playfair Display', 'Georgia', serif;
+    }
+
+    h1 {
+        color: #2c1a1a;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .places-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .place-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: fit-content;
+    }
+
+    .place-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .images img {
+        margin-top:20px;
+        width: 380px;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .place-info {
+        padding: 15px;
+    }
+
+    .place-info h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .place-info p {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        color: #4a3b3b;
+    }
+
+    .like-button {
+        background: #d000ff;
+        border: none;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .like-button:hover {
+        background: #00fff2;
+    }
+
+    .feedback-section {
+        padding: 10px;
+        background: #f9f5ef;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .feedback-section textarea {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .feedback-section button {
+        background: #4267b2;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .feedback-section button:hover {
+        background: #2f5190;
+    }
+
+    @media (max-width: 768px) {
+        .places-container {
+            grid-template-columns: 1fr;
+        }
+
+        .images img {
+            height: 200px;
+        }
+    }
+    .get-directions {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        background-color: #0400ff;
+        color: #fff;
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 8px;
+        transition: background 0.3s, transform 0.2s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .get-directions:hover {
+        background: linear-gradient(135deg, #da04f7, #ff5b7f);
+        transform: translateY(-2px);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .get-directions .icon {
+        font-size: 1.2rem;
+        margin-right: 8px;
+    }
+    /* Star Rating Styles */
+    .star-rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-evenly;
+        gap: 5px;
+    }
+
+    .star-rating input {
+        display: none;
+    }
+
+    .star-rating label {
+        font-size: 2rem;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+        color: #ffbb00; /* Bright gold for active stars */
+    }
+
+    /* Feedback Form Styles */
+    form {
+        margin-top: 15px;
+        padding: 15px;
+        /* background: linear-gradient(135deg, #ff9a8b, #f6d365); */
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    form textarea {
+        width: 80%;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 1rem;
+        resize: none;
+        margin-top: 10px;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    form textarea:focus {
+        border-color: #ff7e5f;
+        outline: none;
+    }
+
+    form button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    form button:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+    }
+
+    form button:active {
+        background-color: #3d8b42;
+        transform: translateY(1px);
+    }
+    .asf{
+        width: 80%;
+        margin-left: 5%;
+    }
+</style>
+    <script>
+        function toggleLike(placeId) {
+            fetch(`/toggle_like/${placeId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    const btn = document.getElementById(`like-btn-${placeId}`);
+                    btn.textContent = data.liked ? '💔 Unlike' : '❤️ Like';
+                });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Exploring Bharat's Heritage and Culture</h1>
+            </div>
+            <nav>
+                <div class="menu">
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('india') }}">Map</a>
+                    <a href="{{ url_for('gallery') }}">Gallery</a>
+                    <a href="{{ url_for('hiddengems') }}">Hidden Gems</a>
+                    <a href="{{ url_for('upload') }}">Upload</a>
+                    <a href="{{ url_for('plan_trip') }}">Community</a>
+                    <a href="{{ url_for('chat') }}">Chat</a>
+                    <a href="{{ url_for('liked') }}">Liked</a>
+                    <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </header><br><br>
+
+    <h1>{{ state_name }}</h1>
+
+    <div class="places-container">
+        {% for item in places_data %}
+            <div class="place-card">
+                <div class="card-content">
+                    <div class="images">
+                        {% for image in item.images %}
+                            <img src="{{ image }}" alt="{{ item.place.name }}">
+                        {% endfor %}
+                    </div>
+                    <div class="place-info">
+                        <h2>{{ item.place.name }}</h2>
+                        <p>{{ item.place.description }}</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query={{ item.place.name | urlencode }}" target="_blank" class="get-directions">
+                            <span class="icon">📍</span> Get Directions
+                        </a>
+                        <button id="like-btn-{{ item.place.id }}" class="like-button" onclick="toggleLike({{ item.place.id }})">❤️ Like</button>
+                    </div>
+                    <p>Average Rating: <span style="color: #000000; font-weight: bold;">{{ item.avg_rating | round(1) }}</span></p>
+                </div>
+
+                <!-- Feedback and Rating Form -->
+                <form action="{{ url_for('submit_rating_feedback', place_id=item.place.id) }}" method="POST" class="feedback-form">
+                    <div class="star-rating">
+                        {% for i in range(5, 0, -1) %}
+                            <input type="radio" name="rating" id="star{{ i }}-{{ item.place.id }}" value="{{ i }}">
+                            <label for="star{{ i }}-{{ item.place.id }}">★</label>
+                        {% endfor %}
+                    </div>
+                    <textarea name="feedback" rows="2" cols="40" placeholder="Write your thoughts..."></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <!-- Feedback Section -->
+                <div class="feedback-section">
+                    <strong>User Comments:</strong>
+                    {% for fb in item.feedbacks %}
+                        <p><strong>{{ fb.user_email.split('@')[0] }}</strong>: {{ fb.comment }}</p>
+                    {% else %}
+                        <p>No comments yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</body>
+</html>

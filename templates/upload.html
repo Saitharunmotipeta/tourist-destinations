@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="static/images/logo.jpg" type="image/jpeg">
+  <title>Upload</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@300;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', 'Poppins', sans-serif;
+    }
+
+    body {
+      background: url('{{ url_for("static", filename="images/bg10.png") }}') no-repeat center center fixed;
+      background-size: cover;
+      color: #1c2526;
+      line-height: 1.6;
+      padding-bottom: 50px;
+      overflow-x: hidden;
+      position: relative;
+      background-color: #ffffff; /* fallback if image fails */
+    }
+
+    nav {
+            background: rgba(10, 10, 25, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            height: 12vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .logo h1 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #e0f7fa;
+            font-size: 1rem;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #80eaff;
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #80eaff;
+            transition: width 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+.upload-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px 40px;
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96c93d); /* vibrant multi-color gradient */
+  border-radius: 16px;
+  border: 2px solid #1c2526; /* dark border for contrast */
+  box-shadow: 0 0 15px 3px rgba(255, 107, 107, 0.6), 0 0 25px 5px rgba(78, 205, 196, 0.4);
+  color: #1c2526;
+  position: relative;
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+  animation: gradientShift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.upload-container:hover {
+  box-shadow: 0 0 25px 5px rgba(255, 107, 107, 0.8), 0 0 35px 8px rgba(78, 205, 196, 0.6);
+  transform: translateY(-5px); /* slight lift on hover */
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.7), 0 0 12px rgba(78, 205, 196, 0.5);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Glowing text effect */
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 8px rgba(255, 107, 107, 0.7), 0 0 12px rgba(78, 205, 196, 0.5); }
+  50% { text-shadow: 0 0 12px rgba(255, 107, 107, 0.9), 0 0 18px rgba(78, 205, 196, 0.7); }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(69, 183, 209, 0.6);
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #ff6b6b; /* vibrant red border */
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9); /* semi-transparent white */
+  color: #1c2526;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 0 10px rgba(150, 201, 61, 0.5);
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: #a1c9d1;
+  font-weight: 400;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #45b7d1; /* bright cyan */
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 15px rgba(69, 183, 209, 0.8);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Hide actual file input */
+input[type="file"] {
+  display: none;
+}
+
+label[for="images"]::after {
+  content: 'Choose Images';
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #ff6b6b, #96c93d); /* red to lime gradient */
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  animation: buttonGlow 3s ease infinite;
+}
+
+label[for="images"]:hover::after {
+  box-shadow: 0 0 20px 5px rgba(150, 201, 61, 0.9);
+  transform: scale(1.05); /* slight scale-up on hover */
+}
+
+/* Button glow animation */
+@keyframes buttonGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 107, 0.7); }
+  50% { box-shadow: 0 0 15px rgba(255, 107, 107, 0.9); }
+}
+
+button[type="submit"] {
+  background: linear-gradient(135deg, #ff6b6b, #45b7d1); /* red to cyan gradient */
+  color: #ffffff;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 0 15px 4px rgba(69, 183, 209, 0.7);
+  transition: box-shadow 0.3s ease, background 0.3s ease, transform 0.3s ease;
+  animation: buttonGlow 3s ease infinite;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #45b7d1, #ff6b6b); /* reversed gradient */
+  box-shadow: 0 0 25px 6px rgba(150, 201, 61, 0.9);
+  transform: scale(1.05);
+}
+
+.view-posts {
+  display: block;
+  text-align: center;
+  margin-top: 25px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  text-shadow: 0 0 5px rgba(255, 107, 107, 0.7);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.view-posts:hover {
+  text-decoration: underline;
+  color: #96c93d; /* vibrant lime */
+  text-shadow: 0 0 10px rgba(150, 201, 61, 0.9);
+}
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+      }
+
+      .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .logo h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .upload-container {
+        margin: 20px;
+        padding: 25px 20px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Exploring Bharat's Heritage and Culture</h1>
+      </div>
+      <div class="menu">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('india') }}">Map</a>
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+        <a href="{{ url_for('hiddengems') }}">Hidden Gems</a>
+        <a href="{{ url_for('chat') }}">Chat</a>
+        <a href="{{ url_for('plan_trip') }}">Community</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="upload-container">
+    <h1>Upload a New Post</h1>
+    <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+      <label for="name">Place Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter place name" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" placeholder="Describe the place..." required></textarea>
+
+      <label for="images">Upload Images:</label>
+      <input type="file" id="images" name="images" multiple accept="image/*">
+
+      <button type="submit">Upload</button>
+    </form>
+    <a href="{{ url_for('hiddengems') }}" class="view-posts">View All Posts</a>
+  </div>
+</body>
+</html>

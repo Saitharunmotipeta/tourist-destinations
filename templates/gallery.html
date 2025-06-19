@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
+  <link rel="icon" href="static/images/logo.jpg" type="image/jpeg">
+  <style>
+   * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #f4f4f9, #e6f0ff);
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+header {
+  background: #002244;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #00ffc8;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  letter-spacing: 1.5px;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #f1c40f;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 140px 40px 60px;
+  gap: 40px;
+}
+
+.sidebar {
+  flex: 1 1 300px;
+  max-width: 350px;
+  background: #ffffffcc;
+  backdrop-filter: blur(6px);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  font-size: 26px;
+  color: #002244;
+  margin-bottom: 15px;
+}
+
+.sidebar p {
+  font-size: 17px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.gallery-container {
+  flex: 3 1 700px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.gallery {
+  column-count: 3;
+  column-gap: 20px;
+}
+
+.gallery a {
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery img:hover {
+  transform: scale(1.04);
+}
+
+.gallery-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.gallery-container::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 5px;
+}
+
+.gallery-container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+@media (max-width: 1024px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .gallery {
+    column-count: 1;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1><b>EXPLORING BHARAT'S HERITAGE AND CULTURE</b></h1>
+    </div>
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('india') }}">India</a>
+      <a href="{{ url_for('hiddengems') }}">Hidden Gems</a>
+      <a href="{{ url_for('plan_trip') }}">Community</a>
+      <a href="{{ url_for('chat') }}">Chat</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Sidebar -->
+    <section class="sidebar">
+      <h2>Explore Our Culture</h2>
+      <p>
+        Discover the rich heritage and diverse cultural history of India. From hidden gems to majestic landmarks, immerse yourself in the beauty of our country.
+        Click on the images to learn more about these iconic locations!
+      </p>
+      <h2>Chatbot</h2>
+<iframe src="http://localhost:8501" width="100%" height="400px" style="border:none;"></iframe>
+
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-container">
+      <div class="gallery">
+        <!-- West Bengal -->
+        <a href="westbengal.html"><img src="{{ url_for('static', filename='images/Sandakhpur.jpg') }}" alt="Sandakphu, West Bengal"></a>
+        <a href="westbengal.html"><img src="{{ url_for('static', filename='images/tabakoshi.jpg') }}" alt="Tabakoshi, West Bengal"></a>
+        
+        <!-- Jammu and Kashmir -->
+        <a href="jk.html"><img src="{{ url_for('static', filename='images/warwan.jpg') }}" alt="Warwan Valley, Jammu and Kashmir"></a>
+        <a href="jk.html"><img src="{{ url_for('static', filename='images/nathatop.jpeg') }}" alt="Nathatop, Jammu and Kashmir"></a>
+
+        <!-- AP -->
+        <a href="ap.html"><img src="{{ url_for('static', filename='images/silathoranam.jpg') }}" alt="ap"></a>
+        <a href="ap.html"><img src="{{ url_for('static', filename='images/belum.jpg') }}" alt="ap"></a>
+
+         <!-- Ladakh -->
+        <a href="ladakh.html"><img src="{{ url_for('static', filename='images/panaromichotspring.jpg') }}" alt="Panaromic Hotspring, Ladakh"></a>
+        <a href="ladakh.html"><img src="{{ url_for('static', filename='images/turtuk.jpg') }}" alt="Turtuk, Ladakh"></a>
+
+        <!-- Himachal Pradesh -->
+        <a href="himachalpradesh.html"><img src="{{ url_for('static', filename='images/Renuka.jpg') }}" alt="Renuka Lake, Himachal"></a>
+        <a href="himachalpradesh.html"><img src="{{ url_for('static', filename='images/jibhi.png') }}" alt="Jibhi Waterfall, Himachal"></a>
+
+        <!-- Telangana -->
+        <a href="tng.html"><img src="{{ url_for('static', filename='images/BogathaWaterfall.jpg') }}" alt="bogatha"></a>
+        <a href="tng.html"><img src="{{ url_for('static', filename='images/pakhal.jpg') }}" alt="pakhal"></a>
+
+        <!-- Haryana -->
+        <a href="haryana.html"><img src="{{ url_for('static', filename='images/karnal.jpg') }}" alt="Karnal Lake, Haryana"></a>
+        <a href="haryana.html"><img src="{{ url_for('static', filename='images/devitemple.webp') }}" alt="Devi Temple, Haryana"></a>
+
+        <!-- Bihar -->
+        <a href="bihar.html"><img src="{{ url_for('static', filename='images/ghorakatora.webp') }}" alt="Ghora Katora, Bihar"></a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

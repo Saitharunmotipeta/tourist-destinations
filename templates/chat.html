@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exploring Bharat's Heritage and Culture - Chat</title>
+  <link rel="icon" href="static/images/logo.jpg" type="image/jpeg">
+  <style>
+  /* Base Reset and Fonts */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: url('{{ url_for("static", filename="images/bg12.png") }}') no-repeat center center fixed;
+    background-size: cover;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #e5e7eb; /* lighter neutral */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Header & Navigation */
+  header {
+    width: 100%;
+    background: linear-gradient(90deg, #0f172a, #1e293b);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  nav {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.65);
+    height: 12vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    flex-wrap: wrap;
+  }
+
+  .logo h1 {
+    color: #facc15;
+    font-size: 1.8rem;
+    text-shadow: 0 0 15px rgba(250, 204, 21, 0.9);
+    margin: 0;
+  }
+
+  .menu {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-size: 1rem;
+    position: relative;
+    transition: 0.3s ease;
+    user-select: none;
+  }
+
+  .menu a:hover {
+    color: #38bdf8;
+  }
+
+  .menu a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: #38bdf8;
+    transition: width 0.3s ease;
+  }
+
+  .menu a:hover::after {
+    width: 100%;
+  }
+
+  /* Main Container */
+  .container {
+    background: rgba(30, 41, 59, 0.95); /* slate-800 but deeper */
+    max-width: 650px;
+    margin: 3rem 1rem 6rem;
+    padding: 2.8rem 3.2rem;
+    border-radius: 10px;
+    box-shadow: 0 16px 50px rgba(251, 191, 36, 0.4);
+    width: 100%;
+    align-items: center;
+  }
+
+  /* Titles */
+  h2 {
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #fde68a;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px #fde68a88;
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #f1f5f9;
+    margin-bottom: 1.6rem;
+    text-align: center;
+  }
+
+  /* Form Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #e2e8f0;
+    user-select: none;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  input[type="email"] {
+    padding: 18px 18px;
+    font-size: 1.1rem;
+    border-radius: 18px;
+    border: 1.5px solid #475569;
+    background-color: #0f172a;
+    color: #f1f5f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline-offset: 2px;
+    align-items: center;
+    width: 450px;
+    margin-left: 45px;
+  }
+
+  input[type="email"]::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+  }
+
+  input[type="email"]:focus {
+    border-color: #facc15;
+    box-shadow: 0 0 12px #facc15aa;
+    background-color: #1e293b;
+    outline: none;
+  }
+
+  /* Submit Button */
+  button[type="submit"] {
+    padding: 16px 0;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(234, 179, 8, 0.8);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+
+  button[type="submit"]:hover,
+  button[type="submit"]:focus {
+    background: linear-gradient(135deg, #d97706, #f59e0b);
+    box-shadow: 0 10px 25px rgba(234, 179, 8, 1);
+    transform: translateY(-3px);
+    outline: none;
+  }
+
+  /* Chat List */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 2.4rem 0 0;
+  }
+
+  li {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 1rem 1.4rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border: 1px solid #475569;
+  }
+
+  li:hover {
+    box-shadow: 0 8px 20px rgba(251, 191, 36, 0.6);
+    transform: translateX(5px);
+  }
+
+  li strong {
+    font-weight: 700;
+    color: #fde047;
+    user-select: none;
+  }
+
+  li span {
+    font-size: 1rem;
+    color: #9ca3af;
+    user-select: none;
+  }
+
+  a.chat-btn {
+    background: linear-gradient(135deg, #fde047, #f59e0b);
+    color: #1e293b;
+    font-weight: 700;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.6);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    user-select: none;
+  }
+
+  a.chat-btn:hover,
+  a.chat-btn:focus {
+    box-shadow: 0 8px 22px rgba(251, 191, 36, 0.9);
+    transform: scale(1.05);
+    outline: none;
+  }
+
+  /* No chats message */
+  p {
+    margin-top: 3rem;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
+    user-select: none;
+  }
+
+  hr {
+    border: none;
+    height: 2px;
+    width: 100%;
+    margin: 3rem 0;
+    background: linear-gradient(90deg, transparent, #facc15, transparent);
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    nav {
+      padding: 1rem 1.5rem;
+    }
+
+    .logo h1 {
+      font-size: 1.3rem;
+    }
+
+    .menu {
+      gap: 1rem;
+    }
+
+    .container {
+      margin: 2rem 1rem 4rem;
+      padding: 2rem 2rem;
+      max-width: 95vw;
+    }
+
+    button[type="submit"] {
+      font-size: 1.15rem;
+      padding: 14px 0;
+    }
+  }
+</style>
+
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Exploring Bharat's Heritage and Culture</h1>
+      </div>
+      <div class="menu">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('india') }}">Map</a>
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+        <a href="{{ url_for('hiddengems') }}">Hidden Gems</a>
+        <a href="{{ url_for('upload') }}">Upload</a>
+        <a href="{{ url_for('plan_trip') }}">Community</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Chat</h2>
+
+    <!-- Start New Chat Form -->
+    <h3>Start a New Chat</h3>
+    <form action="{{ url_for('start_new_chat') }}" method="POST">
+      <div class="form-group">
+        <label for="receiver_email">Enter the email of the person you want to chat with:</label>
+        <input type="email" name="receiver_email" id="receiver_email" required />
+      </div>
+      <button type="submit">Start Chat</button>
+    </form>
+
+    <hr />
+
+    <!-- Existing Chats (Users the current user has chatted with) -->
+    <h3>Previous Chats</h3>
+    {% if chat_users %}
+      <ul>
+        {% for user in chat_users %}
+          <li>
+            <strong>{{ user.name }}</strong> - <span>{{ user.email }}</span>
+            <a href="{{ url_for('chat_with_user', receiver_email=user.email) }}" class="chat-btn">Chat</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>You have no previous chats. Start a new one!</p>
+    {% endif %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/images/logo.jpg" type="image/jpeg">
+    <title>Hidden Gems</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+            background: url('{{ url_for("static", filename="images/bg10.png") }}') no-repeat center center fixed;
+            background-size: cover;
+            padding-top: 80px; /* To avoid content under navbar */
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed; /* Changed from sticky to fixed */
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        .logo h1 {
+            color: #d4a017;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-shadow: 0 0 8px rgba(212, 160, 23, 0.5);
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu a {
+            color: #b0c4de;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #ffd700;
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: -3px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 2.2rem;
+            color: #d4a017;
+            text-shadow: 0 0 5px rgba(212, 160, 23, 0.3);
+        }
+
+        .place-card {
+            width: 700px;
+            min-height: 170px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+        .place-card h2 {
+            font-size: 1.4rem;
+            color: #d4a017;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 0 0 3px rgba(212, 160, 23, 0.3);
+        }
+
+        .place-card p {
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .place-card .images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Image size increased */
+            gap: 10px;
+            margin: 12px 0;
+            justify-items: center;
+        }
+
+        .place-card .images img {
+            width: 100%;
+            height: 160px; /* Image height increased */
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        /* The rest of the CSS is untouched to honor your request */
+
+        .place-card a[target="_blank"] {
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .place-card a[target="_blank"]:hover {
+            background: #ffd700;
+            color: #000;
+        }
+
+        .place-card button[type="submit"] {
+            background: #d4a017;
+            color: #1a1a2e;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        .place-card button[type="submit"]:hover {
+            background: #ffd700;
+        }
+
+        .place-card .star-rating {
+            margin: 10px 0;
+            font-size: 1.3rem;
+        }
+
+        .place-card textarea {
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+            color: #1a1a2e;
+            padding: 8px;
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+
+        .place-card .feedback-section {
+            background: rgba(245, 245, 245, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .place-card .feedback-section strong {
+            color: #d4a017;
+        }
+
+        .place-card .feedback-section p {
+            font-size: 0.85rem;
+            color: #333;
+            padding: 6px 10px;
+            background: #fff;
+            border-left: 4px solid #d4a017;
+            border-radius: 6px;
+            margin: 6px 0;
+        }
+
+        .post {
+            box-shadow: #16213e;
+        }
+        /* Responsive Styles */
+@media (max-width: 1024px) {
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .menu a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .place-card {
+        width: 90%; /* Adjusted for smaller screens */
+        margin: 15px auto;
+    }
+
+    .place-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .place-card p {
+        font-size: 0.9rem;
+    }
+
+    .place-card .images img {
+        height: 120px; /* Adjusted for smaller screens */
+    }
+
+    .place-card .feedback-section p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 5px;
+    }
+
+    .menu a {
+        font-size: 0.8rem;
+    }
+
+    .place-card h2 {
+        font-size: 1rem;
+    }
+
+    .place-card .images {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Adjusted for very small screens */
+    }
+
+    .place-card .images img {
+        height: 100px;
+    }
+
+    .place-card .like-button,
+    .place-card button[type="submit"] {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .place-card textarea {
+        font-size: 0.8rem;
+    }
+
+    .place-card .feedback-section p {
+        font-size: 0.75rem;
+        padding: 5px;
+    }
+}
+    .like-button {
+            height:10%;
+            width: 25%;
+            background: #d000ff;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .like-button:hover {
+            background: #00fff2;
+        }
+        .tb{
+            display: flex;
+            justify-content:flex-start;
+            gap:10px;
+        }
+        .get-directions {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        background-color: #0400ff;
+        color: #fff;
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 8px;
+        transition: background 0.3s, transform 0.2s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .get-directions:hover {
+        background: linear-gradient(135deg, #da04f7, #ff5b7f);
+        transform: translateY(-2px);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .get-directions .icon {
+        font-size: 1.2rem;
+        margin-right: 8px;
+    }
+    .no-posts {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #555;
+    margin: 20px 0;
+}
+
+.no-posts a {
+    color: #007BFF;
+    background-color: #ccc;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 4px 8px;
+    border: 1px solid #007BFF;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.no-posts a:hover {
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Exploring Bharat's Heritage and Culture</h1>
+            </div>
+            <div class="menu">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('india') }}">Map</a>
+                <a href="{{ url_for('gallery') }}">Gallery</a>
+                <a href="{{ url_for('upload') }}">Upload</a>
+                <a href="{{ url_for('chat') }}">Chat</a>
+                <a href="{{ url_for('plan_trip') }}">Community</a>
+                <a href="{{ url_for('logout') }}" style="margin-left: 20px;">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <h1 id="post">All Posts</h1>
+
+    {% if posts %}
+        <div class="places-container">
+            {% for post in posts|reverse %}  <!-- Newest posts first -->
+            <div class="place-card">
+                <h2>{{ post.name }}</h2>
+                <p>{{ post.description }}</p>
+
+                {% if post.image_paths %}
+                <div class="images">
+                    {% for image in post.image_paths.split(',') %}
+                    <img src="{{ url_for('static', filename='uploads/' + image.strip()) }}"
+                         alt="Image for {{ post.name }}"
+                         onerror="this.src=''; this.alt='Image not found: uploads/{{ image.strip() }}'">
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <p>Uploaded by: {{ post.uploader_email }}</p>
+
+                <div class="tb">
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ post.name | urlencode }}" target="_blank" class="get-directions"><span class="icon">📍</span> Get Directions</a>
+                    <button id="like-btn-{{ post.id }}" class="like-button" onclick="toggleLike({{ post.id|tojson }})">
+                        ❤️Like
+                    </button>
+                </div>
+
+               <p><strong>Average Rating:</strong> {{ post.rating }}</p>
+
+                <form action="{{ url_for('submit_rating_feedback', place_id=post.id) }}" method="POST">
+                    <div class="star-rating">
+                        {% for i in range(5, 0, -1) %}
+                        <label for="star{{ i }}-{{ post.id }}">★</label>
+                        {% endfor %}
+                    </div>
+                    <textarea name="feedback" rows="2" cols="40" placeholder="Write your thoughts..."></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+
+
+                <div class="feedback-section">
+                    <strong>User Comments:</strong>
+                    {% for fb in post.feedbacks %}
+                    <p>
+                        {{ fb.user_email.split('@')[0] }} - {{ fb.comment }}
+                        {% if fb.user_email == current_email %}
+                        <form action="{{ url_for('delete_feedback_and_rating', place_id=post.id) }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="feedback_id" value="{{ fb.id }}">
+                            <button type="submit" onclick="return confirm('Delete your comment and rating for this post?')">🗑️ Delete</button>
+                        </form>
+                        {% endif %}
+                    </p>
+                    {% else %}
+                    <p>No comments yet.</p>
+                    {% endfor %}
+                </div>
+
+                {% if current_email == post.uploader_email %}
+                <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">🗑️ Delete</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-posts">
+             <a href="{{ url_for('upload') }}">Create a post</a>.
+        </p>
+    {% endif %}
+
+    <script>
+        function toggleLike(placeId) {
+            fetch(`/toggle_like/${placeId}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const btn = document.getElementById(`like-btn-${placeId}`);
+                btn.textContent = data.liked ? '💔 Unlike' : '❤️ Like';
+            })
+            .catch(error => console.error('Error toggling like:', error));
+        }
+    </script>
+</body>
+</html>

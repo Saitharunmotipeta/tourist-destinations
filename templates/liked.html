@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Liked Places</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav h1 {
+            color: #f1c40f;
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            flex: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: capitalize;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        nav a:hover::before {
+            left: 100%;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        nav a[href*="logout"] {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-radius: 25px;
+            padding: 10px 20px !important;
+        }
+
+        nav a[href*="logout"]:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 2px;
+        }
+
+        /* Places Container */
+        .places-container {
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Place Cards */
+        .place-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            width:100%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .place-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .place-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .place-card h2 {
+            color: #2980b9;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .place-card p {
+            color: #5d6d7e;
+            font-size: 1rem;
+            margin: 15px 0;
+            line-height: 1.7;
+        }
+
+        /* Images Section */
+        .images {
+            display: grid;
+            align-self: center;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 40%;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .images img {
+            height:400px;
+            width:300px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .images img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Buttons */
+        .like-button {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 10px 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .like-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .like-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .like-button:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Directions Link */
+        a[href*="google.com"] {
+            display: inline-block;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 10px 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        a[href*="google.com"]:hover {
+            background: linear-gradient(135deg, #229954, #27ae60);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        }
+
+        /* Rating Section */
+        .star-rating {
+            direction: rtl;
+            display: inline-flex;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #f39c12;
+        }
+
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 28px;
+            color: #bdc3c7;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 2px;
+        }
+
+        .star-rating label:hover {
+            transform: scale(1.2);
+        }
+
+        .star-rating input[type="radio"]:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f39c12;
+            text-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+        }
+
+        /* Form Elements */
+        form {
+            margin: 20px 0;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-1px);
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(135deg, #2980b9, #21618c);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Feedback Section */
+        .feedback-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .feedback-section strong {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .feedback-section p {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 3px solid #3498db;
+        }
+
+        .feedback-section button {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-section button:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-1px);
+        }
+
+        /* Rating Display */
+        .place-card p strong {
+            color: #2980b9;
+            font-size: 1.1rem;
+        }
+
+        /* No Places Message */
+        body > p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-top: 50px;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 20px;
+            }
+
+            nav h1 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            nav div {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .places-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .place-card {
+                padding: 20px;
+            }
+
+            .images {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .images img {
+                height: 120px;
+            }
+
+            .star-rating label {
+                font-size: 24px;
+            }
+
+            .like-button,
+            a[href*="google.com"] {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px 10px;
+            }
+
+            .place-card {
+                padding: 15px;
+            }
+
+            .place-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .images {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .feedback-section {
+                padding: 15px;
+            }
+        }
+
+        /* Logo specific styling */
+        .logo {
+            color: #ffd700 !important;
+            font-size: 2rem !important;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.8) !important;
+            letter-spacing: 1px !important;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.5rem !important;
+            }
+        }
+    </style>
+    <script>
+        function toggleLike(placeId) {
+            fetch(`/toggle_like/${placeId}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                const btn = document.getElementById(`like-btn-${placeId}`);
+                btn.textContent = data.liked ? '💔 Unlike' : '❤️ Like';
+            });
+        
+        }
+    </script>
+    <header>
+        <nav>
+            <h1 class="logo">Exploring Bharat's Heritage and Culture</h1>
+            <div>
+                <a href="{{ url_for('home') }}" style="float: left;">home</a>
+                <a href="{{ url_for('india') }}" style="float: left;">Map</a>
+                <a href="{{ url_for('gallery') }}" style="float: left;">Gallery</a>
+                <a href="{{ url_for('upload') }}" style="float: left;">upload</a>
+                <a href="{{ url_for('hiddengems') }}" style="float: left;">Hidden Gems</a>
+                <a href="{{ url_for('chat') }}">Chat</a>
+                <a href="{{ url_for('plan_trip') }}">Community</a>
+                <a href="{{ url_for('logout') }}" style="float: right;">Logout</a>
+            </div>
+        </nav>
+    </header>
+</head>
+<body>
+
+    <h1>Your ❤️ Liked Places</h1>
+
+   {% if places_data %}
+    <div class="places-container">
+        {% for place in places_data %}
+            <div class="place-card">
+                <h2>{{ place.name }}</h2>
+
+                <!-- Images Section -->
+                <div class="images">
+                    {% for image in place.images %}
+                        <img src="{{ image }}" alt="{{ place.name }}" />
+                    {% endfor %}
+                </div>
+
+                <!-- Place Details -->
+                <p>{{ place.description }}</p>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ place.name | urlencode }}" target="_blank">
+                    📍 Get Directions
+                </a>
+
+                <!-- Like Button -->
+                <button id="like-btn-{{ place.id }}" class="like-button" onclick="toggleLike({{ place.id }})">
+                    ❤️ Like
+                </button>
+
+                <!-- Average Rating -->
+                <p><strong>Average Rating:</strong> {{ place.rating | round(1) }}</p>
+
+                <!-- ⭐ Rating and Feedback Form -->
+                <form action="{{ url_for('submit_rating_feedback', place_id=place.id) }}" method="POST">
+                    <div class="star-rating">
+                        {% for i in range(5, 0, -1) %}
+                            <input type="radio" name="rating" id="star{{ i }}-{{ place.id }}" value="{{ i }}">
+                            <label for="star{{ i }}-{{ place.id }}">★</label>
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <textarea name="feedback" rows="2" cols="40" placeholder="Write your thoughts..."></textarea><br>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <!-- 💬 Feedback Section -->
+                <div class="feedback-section">
+                    <strong>User Comments:</strong>
+                    {% for fb in place.feedbacks %}
+                        <p>
+                            {{ fb.user_email.split('@')[0] }} - {{ fb.comment }}
+                            {% if fb.user_email == current_email %}
+                                <form action="{{ url_for('delete_feedback_and_rating', place_id=place.id) }}" method="POST" style="display:inline;">
+                                    <input type="hidden" name="feedback_id" value="{{ fb.id }}">
+                                    <button type="submit" onclick="return confirm('Delete your comment and rating for this place?')">🗑️ Delete</button>
+                                </form>
+                            {% endif %}
+                        </p>
+                    {% else %}
+                        <p>No comments yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    {% else %}
+    <p>No liked places found yet.</p>
+    {% endif %}
+
+    
+</body>
+</html>
