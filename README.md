@@ -1,2 +1,0 @@
-# tourist-destinations
-# tourist-destinations
