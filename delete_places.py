@@ -8,7 +8,7 @@ def delete_all_places():
         db.session.query(PlaceImage).delete()
         db.session.query(Place).delete()
         db.session.commit()
-        print("🗑️ All places and their images deleted.")
+        # print("🗑️ All places and their images deleted.")
 
 if __name__ == "__main__":
     delete_all_places()

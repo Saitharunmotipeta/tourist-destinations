@@ -32,7 +32,10 @@ from routes import *
 
 # Run insert_places.py at the start of the app
 def run_insert_places():
-    subprocess.run(["python", "insert_places.py"], check=True)
+    try:
+        subprocess.run(["python", "insert_places.py"], check=True)
+    except Exception as e:
+        print(f"Error running insert_places.py: {e}")
 
 if __name__ == "__main__":
     with app.app_context():
