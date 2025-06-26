@@ -90,9 +90,11 @@ def file2():
     return render_template("gallery.html")
 
 @app.route('/hiddengems')
+@login_required
 def hiddengems():
     posts = Post.query.all()
-    return render_template('hiddengems.html', posts=posts, current_email=current_user.email)
+    email = current_user.email if current_user.is_authenticated else None
+    return render_template('hiddengems.html', posts=posts, current_email=email)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
