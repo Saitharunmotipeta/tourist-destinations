@@ -1,0 +1,538 @@
+[
+  
+  {
+    "tag": "beaches",
+    "patterns": [
+      "I like beaches",
+      "Recommend me some beaches in India",
+      "Best beach destinations in India"
+    ],
+    "responses": [
+      "Here are the best beach destinations in India:\n1. Radhanagar Beach, Andaman & Nicobar\n2. Baga Beach, Goa\n3. Varkala Beach, Kerala"
+    ]
+  },
+  {
+    "tag": "hotels_near_radhanagar_beach",
+    "patterns": [
+      "Hotels near Radhanagar Beach",
+      "Stay options at Radhanagar Beach",
+      "Recommend hotels in Andaman near Radhanagar Beach"
+    ],
+    "responses": [
+      "Here are some hotels near Radhanagar Beach:\n- SeaShell, Havelock Island (Rating: 4.2)\n- Tango Beach Resort (Rating: 4.0)\n- Silver Sand Beach Resort (Rating: 3.8)"
+    ]
+  },
+  {
+    "tag": "hotels_near_baga_beach",
+    "patterns": [
+      "Hotels near Baga Beach",
+      "Stay options at Baga Beach",
+      "Recommend hotels in Goa near Baga Beach"
+    ],
+    "responses": [
+      "Here are some hotels near Baga Beach:\n- Taj Exotica Resort & Spa (Rating: 4.6)\n- Marbela Beach Resort (Rating: 4.4)\n- Baga Beach Resort (Rating: 4.1)"
+    ]
+  },
+  {
+    "tag": "hotels_near_varkala_beach",
+    "patterns": [
+      "Hotels near Varkala Beach",
+      "Stay options at Varkala Beach",
+      "Recommend hotels in Kerala near Varkala Beach"
+    ],
+    "responses": [
+      "Here are some hotels near Varkala Beach:\n- Clafouti Beach Resort (Rating: 4.3)\n- The Gateway Hotel Varkala (Rating: 4.2)\n- Palm Tree Heritage (Rating: 3.9)"
+    ]
+  },
+  {
+  "tag": "greeting",
+  "patterns": [
+    "hi",
+    "hello",
+    "hey",
+    "good morning",
+    "good evening"
+  ],
+  "responses": [
+    "Hello and welcome to **Incredible India Tourism**!\n\nI can help you explore amazing destinations like:\nBeaches\n Mountains\n Caves\n Heritage Sites\n Wildlife & National Parks\n Yoga & Wellness Retreats\nPopular Cities\n Lakes\nTheme Parks\n Thrilling Adventures\n Festivals\n\nWhat would you love to explore today? "
+  ]
+},
+{
+    "tag": "mountains",
+    "patterns": [
+      "I like mountains",
+      "Mountain destinations in India",
+      "Where can I go for mountains in India?"
+    ],
+    "responses": [
+      "Here are some great mountain destinations in India:\n1. Shimla, Himachal Pradesh\n2. Manali, Himachal Pradesh\n3. Munnar, Kerala"
+    ]
+  },
+  
+  {
+    "tag": "caves",
+    "patterns": [
+      "I like caves",
+      "Suggest some caves to visit",
+      "Cave destinations in India"
+    ],
+    "responses": [
+      "India's famous caves:\n1. Ajanta Caves, Maharashtra\n2. Ellora Caves, Maharashtra\n3. Elephanta Caves, Maharashtra"
+    ]
+  },
+  {
+    "tag": "hotels_near_ajanta_caves",
+    "patterns": [
+      "Hotels near Ajanta Caves",
+      "Stay options at Ajanta Caves",
+      "Recommend hotels in Maharashtra near Ajanta Caves"
+    ],
+    "responses": [
+      "Here are some hotels near Ajanta Caves:\n- Ajanta Hotel (Rating: 4.1)\n- Hotel Golden Cliff (Rating: 4.0)\n- The Orchid Hotel Aurangabad (Rating: 4.2)"
+    ]
+  },
+  {
+    "tag": "hotels_near_ellora_caves",
+    "patterns": [
+      "Hotels near Ellora Caves",
+      "Stay options at Ellora Caves",
+      "Recommend hotels in Maharashtra near Ellora Caves"
+    ],
+    "responses": [
+      "Here are some hotels near Ellora Caves:\n- Ellora Residency (Rating: 4.3)\n- Aurangabad Palace Hotel (Rating: 3.9)\n- Lemon Tree Hotel Aurangabad (Rating: 4.4)"
+    ]
+  },
+  {
+    "tag": "hotels_near_elephanta_caves",
+    "patterns": [
+      "Hotels near Elephanta Caves",
+      "Stay options at Elephanta Caves",
+      "Recommend hotels in Mumbai near Elephanta Caves"
+    ],
+    "responses": [
+      "Here are some hotels near Elephanta Caves:\n- The Taj Mahal Palace, Mumbai (Rating: 4.7)\n- Trident, Nariman Point (Rating: 4.5)\n- The Oberoi Mumbai (Rating: 4.6)"
+    ]
+  },
+
+
+  
+  {
+    "tag": "heritage",
+    "patterns": [
+      "I like heritage sites",
+      "Historic places in India",
+      "Heritage destinations in India"
+    ],
+    "responses": [
+      "Top heritage sites in India:\n1. Taj Mahal, Agra\n2. Hampi, Karnataka\n3. Khajuraho Temples, Madhya Pradesh"
+    ]
+  },
+  {
+    "tag": "hotels_near_taj_mahal",
+    "patterns": [
+      "Hotels near Taj Mahal",
+      "Stay options at Taj Mahal",
+      "Recommend hotels in Agra near Taj Mahal"
+    ],
+    "responses": [
+      "Here are some hotels near Taj Mahal:\n- ITC Mughal (Rating: 4.5)\n- The Oberoi Amarvilas (Rating: 4.8)\n- Trident Agra (Rating: 4.3)"
+    ]
+  },
+  {
+    "tag": "hotels_near_hampi",
+    "patterns": [
+      "Hotels near Hampi",
+      "Stay options at Hampi",
+      "Recommend hotels in Karnataka near Hampi"
+    ],
+    "responses": [
+      "Here are some hotels near Hampi:\n- Evolve Back Hampi (Rating: 4.7)\n- Heritage Resort Hampi (Rating: 4.3)\n- Hampi Boulders Resort (Rating: 4.1)"
+    ]
+  },
+  {
+    "tag": "hotels_near_khajuraho_temples",
+    "patterns": [
+      "Hotels near Khajuraho Temples",
+      "Stay options at Khajuraho",
+      "Recommend hotels in Madhya Pradesh near Khajuraho Temples"
+    ],
+    "responses": [
+      "Here are some hotels near Khajuraho Temples:\n- Radisson Jass Hotel (Rating: 4.4)\n- The Lalit Temple View Khajuraho (Rating: 4.5)\n- Hotel Clarks Khajuraho (Rating: 4.2)"
+    ]
+  },
+
+
+  
+  {
+    "tag": "wildlife",
+    "patterns": [
+      "I like wildlife parks",
+      "National parks in India",
+      "Wildlife sanctuaries to visit"
+    ],
+    "responses": [
+      "Famous wildlife destinations in India:\n1. Jim Corbett National Park, Uttarakhand\n2. Ranthambore National Park, Rajasthan\n3. Kaziranga National Park, Assam"
+    ]
+  },
+  {
+    "tag": "hotels_near_jim_corbett",
+    "patterns": [
+      "Hotels near Jim Corbett National Park",
+      "Stay options at Jim Corbett",
+      "Recommend hotels in Uttarakhand near Jim Corbett National Park"
+    ],
+    "responses": [
+      "Here are some hotels near Jim Corbett National Park:\n- Corbett Riverside Resort (Rating: 4.3)\n- The Riverview Retreat (Rating: 4.1)\n- Jim's Jungle Retreat (Rating: 4.5)"
+    ]
+  },
+  {
+    "tag": "hotels_near_ranthambore",
+    "patterns": [
+      "Hotels near Ranthambore National Park",
+      "Stay options at Ranthambore",
+      "Recommend hotels in Rajasthan near Ranthambore National Park"
+    ],
+    "responses": [
+      "Here are some hotels near Ranthambore National Park:\n- Ranthambore Regency (Rating: 4.2)\n- Nahargarh Ranthambhore (Rating: 4.4)\n- Tiger Moon Resort (Rating: 4.0)"
+    ]
+  },
+  {
+    "tag": "hotels_near_kaziranga",
+    "patterns": [
+      "Hotels near Kaziranga National Park",
+      "Stay options at Kaziranga",
+      "Recommend hotels in Assam near Kaziranga National Park"
+    ],
+    "responses": [
+      "Here are some hotels near Kaziranga National Park:\n- Kaziranga Jungle Resort (Rating: 4.1)\n- Bonhabi Resort (Rating: 4.0)\n- IORA-The Retreat (Rating: 4.3)"
+    ]
+  },
+  {
+    "tag": "wellness",
+    "patterns": [
+      "Wellness retreats in India",
+      "I like wellness trips",
+      "Where can I go for yoga retreats"
+    ],
+    "responses": [
+      "Top wellness retreats:\n1. Ananda in the Himalayas, Uttarakhand\n2. AyurvedaGram, Bangalore\n3. Somatheeram Ayurveda Village, Kerala"
+    ]
+  },
+  {
+    "tag": "cities",
+    "patterns": [
+      "Show me famous cities",
+      "Popular cities to visit in India",
+      "Which cities are worth exploring?"
+    ],
+    "responses": [
+      "Here are some popular cities to explore:\n1. Mumbai, Maharashtra\n2. Delhi\n3. Jaipur, Rajasthan\n4. Bangalore, Karnataka\nWant me to suggest hotels in any of these cities?"
+    ]
+  },
+  {
+    "tag": "hotels_in_mumbai",
+    "patterns": [
+      "Hotels in Mumbai",
+      "Stay options in Mumbai",
+      "Recommend hotels in Mumbai"
+    ],
+    "responses": [
+      "Here are some hotels in Mumbai:\n- The Taj Mahal Palace (Rating: 4.7)\n- The Oberoi Mumbai (Rating: 4.6)\n- Trident Nariman Point (Rating: 4.5)"
+    ]
+  },
+  {
+    "tag": "hotels_in_delhi",
+    "patterns": [
+      "Hotels in Delhi",
+      "Stay options in Delhi",
+      "Recommend hotels in Delhi"
+    ],
+    "responses": [
+      "Here are some hotels in Delhi:\n- The Leela Palace (Rating: 4.6)\n- Taj Mahal Hotel (Rating: 4.5)\n- ITC Maurya (Rating: 4.4)"
+    ]
+  },
+  {
+    "tag": "hotels_in_jaipur",
+    "patterns": [
+      "Hotels in Jaipur",
+      "Stay options in Jaipur",
+      "Recommend hotels in Jaipur"
+    ],
+    "responses": [
+      "Here are some hotels in Jaipur:\n- Rambagh Palace (Rating: 4.8)\n- Trident Jaipur (Rating: 4.5)\n- Taj Jai Mahal Palace (Rating: 4.6)"
+    ]
+  },
+  {
+    "tag": "hotels_in_bangalore",
+    "patterns": [
+      "Hotels in Bangalore",
+      "Stay options in Bangalore",
+      "Recommend hotels in Bangalore"
+    ],
+    "responses": [
+      "Here are some hotels in Bangalore:\n- The Oberoi Bengaluru (Rating: 4.7)\n- Taj MG Road (Rating: 4.5)\n- ITC Gardenia (Rating: 4.6)"
+    ]
+  },
+
+
+  {
+    "tag": "religious_places",
+    "patterns": [
+      "Tell me about religious places",
+      "Famous temples and religious sites in India",
+      "Spiritual destinations in India"
+    ],
+    "responses": [
+      "India has many revered religious places:\n1. Varanasi, Uttar Pradesh\n2. Golden Temple, Amritsar\n3. Vaishno Devi, Jammu & Kashmir\n4. Tirupati, Andhra Pradesh\nDo you want hotel recommendations nearby?"
+    ]
+  },
+  {
+    "tag": "hotels_in_varanasi",
+    "patterns": [
+      "Hotels in Varanasi",
+      "Stay options in Varanasi",
+      "Recommend hotels in Varanasi"
+    ],
+    "responses": [
+      "Here are some hotels in Varanasi:\n- BrijRama Palace (Rating: 4.7)\n- Taj Ganges Varanasi (Rating: 4.5)\n- Hotel Alka (Rating: 4.1)"
+    ]
+  },
+  {
+    "tag": "hotels_near_golden_temple",
+    "patterns": [
+      "Hotels near Golden Temple",
+      "Stay options in Amritsar",
+      "Recommend hotels near Golden Temple"
+    ],
+    "responses": [
+      "Here are some hotels near the Golden Temple:\n- Ramada by Wyndham Amritsar (Rating: 4.4)\n- Hyatt Regency Amritsar (Rating: 4.3)\n- Hotel Mercury Inn by Sonachi (Rating: 4.2)"
+    ]
+  },
+  {
+    "tag": "hotels_near_vaishno_devi",
+    "patterns": [
+      "Hotels near Vaishno Devi",
+      "Stay options at Vaishno Devi",
+      "Recommend hotels in Katra near Vaishno Devi"
+    ],
+    "responses": [
+      "Here are some hotels near Vaishno Devi:\n- The White Hotels Katra (Rating: 4.3)\n- Hotel Asia Vaishno Devi (Rating: 4.1)\n- Country Inn & Suites by Radisson, Katra (Rating: 4.2)"
+    ]
+  },
+  {
+    "tag": "hotels_in_tirupati",
+    "patterns": [
+      "Hotels in Tirupati",
+      "Stay options in Tirupati",
+      "Recommend hotels in Tirupati"
+    ],
+    "responses": [
+      "Here are some hotels in Tirupati:\n- Marasa Sarovar Premiere (Rating: 4.4)\n- Fortune Select Grand Ridge (Rating: 4.3)\n- Hotel Pai Viceroy (Rating: 4.2)"
+    ]
+  },
+
+  {
+    "tag": "wellness_retreats",
+    "patterns": [
+      "Tell me about wellness retreats",
+      "Suggest wellness centers in India",
+      "Yoga and meditation retreats in India"
+    ],
+    "responses": [
+      "Here are some wellness retreats in India:\n1. Ananda in the Himalayas, Uttarakhand\n2. Isha Yoga Center, Tamil Nadu\n3. Ayurveda Gram, Kerala\n4. Osho Ashram, Pune\nWould you like nearby hotel options?"
+    ]
+  },
+  {
+    "tag": "shopping_destinations",
+    "patterns": [
+      "Where can I shop in India?",
+      "Famous shopping markets in India",
+      "Suggest shopping destinations"
+    ],
+    "responses": [
+      "Popular shopping destinations include:\n1. Delhi’s Chandni Chowk\n2. Mumbai’s Colaba Causeway\n3. Jaipur’s Johari Bazaar\n4. Kolkata’s New Market\nDo you want hotel recommendations close to these shopping spots?"
+    ]
+  },
+  {
+    "tag": "festivals",
+    "patterns": [
+      "What festivals are celebrated?",
+      "Tell me about Indian festivals",
+      "Popular festivals in India"
+    ],
+    "responses": [
+      "India celebrates many vibrant festivals such as:\n1. Diwali\n2. Holi\n3. Durga Puja\n4. Pushkar Camel Fair\nWould you like to know about hotels near festival venues?"
+    ]
+  },
+  
+  {
+    "tag": "lakes",
+    "patterns": [
+      "Tell me about lakes",
+      "Scenic lakes in India",
+      "Beautiful lakes to visit in India"
+    ],
+    "responses": [
+      "Some scenic lakes to visit in India:\n1. Dal Lake, Kashmir\n2. Loktak Lake, Manipur\n3. Pangong Lake, Ladakh\n4. Chilika Lake, Odisha\nNeed help finding hotels nearby?"
+    ]
+  },
+  {
+    "tag": "hotels_near_dal_lake",
+    "patterns": [
+      "Hotels near Dal Lake",
+      "Stay options near Dal Lake",
+      "Recommend hotels in Srinagar near Dal Lake"
+    ],
+    "responses": [
+      "Here are some hotels near Dal Lake:\n- The Lalit Grand Palace Srinagar (Rating: 4.6)\n- Welcome Hotel by ITC Hotels (Rating: 4.4)\n- Chicago Houseboats (Rating: 4.5)"
+    ]
+  },
+  {
+    "tag": "hotels_near_loktak_lake",
+    "patterns": [
+      "Hotels near Loktak Lake",
+      "Stay options near Loktak Lake",
+      "Recommend hotels in Manipur near Loktak Lake"
+    ],
+    "responses": [
+      "Here are some hotels near Loktak Lake:\n- Sendra Park & Resort by Classic (Rating: 4.2)\n- Loktak Aquamarine Floating Homestay (Rating: 4.0)\n- Classic Grande Imphal (Rating: 4.3)"
+    ]
+  },
+  {
+    "tag": "hotels_near_pangong_lake",
+    "patterns": [
+      "Hotels near Pangong Lake",
+      "Stay options near Pangong Lake",
+      "Recommend hotels in Ladakh near Pangong Lake"
+    ],
+    "responses": [
+      "Here are some stay options near Pangong Lake:\n- The Pangong Inn (Rating: 4.0)\n- Pangong Delight Camp (Rating: 4.2)\n- Whispering Waves Pangong (Rating: 4.1)"
+    ]
+  },
+  {
+    "tag": "hotels_near_chilika_lake",
+    "patterns": [
+      "Hotels near Chilika Lake",
+      "Stay options near Chilika Lake",
+      "Recommend hotels in Odisha near Chilika Lake"
+    ],
+    "responses": [
+      "Here are some hotels near Chilika Lake:\n- Swosti Chilika Resort (Rating: 4.5)\n- OTDC Panthanivas Barkul (Rating: 4.0)\n- Blue Lagoon Resort (Rating: 4.1)"
+    ]
+  },
+
+ 
+  {
+    "tag": "adventure",
+    "patterns": [
+      "What adventure activities are available?",
+      "Adventure sports in India",
+      "Thrilling activities to try in India"
+    ],
+    "responses": [
+      "Popular adventure activities include:\n1. Trekking in Himachal Pradesh\n2. River Rafting in Rishikesh\n3. Paragliding in Bir Billing\n4. Scuba Diving in Andaman\nWant hotel recommendations nearby?"
+    ]
+  },
+  {
+    "tag": "hotels_near_trekking_himachal",
+    "patterns": [
+      "Hotels near trekking spots in Himachal",
+      "Stay options for trekking in Himachal Pradesh",
+      "Recommend hotels for trekking in Himachal"
+    ],
+    "responses": [
+      "Here are some hotels near trekking trails in Himachal Pradesh:\n- The Himalayan, Manali (Rating: 4.5)\n- Zostel Manali (Rating: 4.3)\n- Johnson Lodge & Spa (Rating: 4.4)"
+    ]
+  },
+  {
+    "tag": "hotels_near_river_rafting_rishikesh",
+    "patterns": [
+      "Hotels near river rafting in Rishikesh",
+      "Stay options for rafting in Rishikesh",
+      "Recommend hotels in Rishikesh for rafting"
+    ],
+    "responses": [
+      "Here are some hotels near river rafting locations in Rishikesh:\n- Aloha on the Ganges (Rating: 4.6)\n- Live Free Hostel (Rating: 4.4)\n- Hotel Ishan (Rating: 4.2)"
+    ]
+  },
+  {
+    "tag": "hotels_near_paragliding_bir",
+    "patterns": [
+      "Hotels near paragliding in Bir Billing",
+      "Stay options in Bir Billing",
+      "Recommend hotels for paragliding in Bir"
+    ],
+    "responses": [
+      "Here are some hotels near Bir Billing:\n- Tatva Bir Tents and Hotels (Rating: 4.5)\n- Zostel Bir (Rating: 4.4)\n- Colonel’s Resort (Rating: 4.3)"
+    ]
+  },
+  {
+    "tag": "hotels_near_scuba_andaman",
+    "patterns": [
+      "Hotels for scuba diving in Andaman",
+      "Stay options in Andaman for scuba diving",
+      "Recommend hotels near Havelock Island"
+    ],
+    "responses": [
+      "Here are some hotels near scuba diving spots in Andaman:\n- SeaShell Havelock (Rating: 4.5)\n- Barefoot at Havelock (Rating: 4.6)\n- Symphony Palms Beach Resort (Rating: 4.3)"
+    ]
+  },
+
+
+  
+  {
+    "tag": "theme_parks",
+    "patterns": [
+      "Tell me about theme parks",
+      "Famous amusement parks in India",
+      "Best theme parks to visit"
+    ],
+    "responses": [
+      "Famous theme parks in India:\n1. Imagica, Maharashtra\n2. Ramoji Film City, Hyderabad\n3. Essel World, Mumbai\n4. Wonderla, Bangalore\nWould you like hotel options near any of these?"
+    ]
+  },
+  {
+    "tag": "hotels_near_imagica",
+    "patterns": [
+      "Hotels near Imagica",
+      "Stay options near Imagica in Maharashtra",
+      "Recommend hotels near Imagica theme park"
+    ],
+    "responses": [
+      "Here are some hotels near Imagica, Maharashtra:\n- Novotel Imagica Khopoli (Rating: 4.4)\n- Hotel Harshali Park (Rating: 4.1)\n- UK’s Resort Khopoli (Rating: 4.0)"
+    ]
+  },
+  {
+    "tag": "hotels_near_ramoji",
+    "patterns": [
+      "Hotels near Ramoji Film City",
+      "Stay options in Hyderabad near Ramoji",
+      "Recommend hotels near Ramoji Film City"
+    ],
+    "responses": [
+      "Here are some hotels near Ramoji Film City, Hyderabad:\n- Hotel Sitara – Ramoji Film City (Rating: 4.5)\n- Tara Comfort Hotel (Rating: 4.3)\n- Shanthiniketan - Ramoji Film City (Rating: 4.1)"
+    ]
+  },
+  {
+    "tag": "hotels_near_essel_world",
+    "patterns": [
+      "Hotels near Essel World",
+      "Stay options near Essel World in Mumbai",
+      "Recommend hotels close to Essel World"
+    ],
+    "responses": [
+      "Here are some hotels near Essel World, Mumbai:\n- The Resort – Madh Marve (Rating: 4.3)\n- Hotel Sea N Rock (Rating: 4.1)\n- Eskay Resorts, Borivali (Rating: 4.0)"
+    ]
+  },
+  {
+    "tag": "hotels_near_wonderla_bangalore",
+    "patterns": [
+      "Hotels near Wonderla Bangalore",
+      "Stay options near Wonderla theme park",
+      "Recommend hotels near Wonderla in Bangalore"
+    ],
+    "responses": [
+      "Here are some hotels near Wonderla, Bangalore:\n- Wonderla Resort (Rating: 4.5)\n- Holiday Village Resort (Rating: 4.2)\n- Eagle Ridge Resort (Rating: 4.0)"
+    ]
+  }
+]

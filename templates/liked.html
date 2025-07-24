@@ -103,6 +103,7 @@
 
         /* Main Content */
         .container {
+            width:fit-content;
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
@@ -129,16 +130,27 @@
             border-radius: 2px;
         }
 
-        /* Places Container */
+        
+        
+
         .places-container {
-            display: flex;
-            flex-direction: column;
-            justify-items: center;
-            align-items: center;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax( 1fr));
             gap: 30px;
             margin-top: 30px;
+            justify-content: center;
         }
+            .places-container:has(.place-card:only-child) {
+                display: flex;
+                justify-content: center;
+            }
+
+            .places-container:has(.place-card:only-child) .place-card {
+                width: fit-content;
+            }
+
+
+
 
         /* Place Cards */
         .place-card {
@@ -189,20 +201,23 @@
             align-self: center;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            margin: 20px 40%;
+            /* margin: 20px 40%; */
             padding: 20px;
             background: #f8f9fa;
             border-radius: 12px;
         }
 
         .images img {
-            height:400px;
-            width:300px;
+            align-self: center;
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
             object-fit: cover;
             border-radius: 12px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
+
 
         .images img:hover {
             transform: scale(1.05);
@@ -539,7 +554,7 @@
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         <nav>
-            <h1 class="logo">Exploring Bharat's Heritage and Culture</h1>
+            <h1 class="logo">Lost Lands of India</h1>
             <div>
                 <a href="{{ url_for('home') }}" style="float: left;">home</a>
                 <a href="{{ url_for('india') }}" style="float: left;">Map</a>

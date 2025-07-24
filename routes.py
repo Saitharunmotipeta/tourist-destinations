@@ -254,7 +254,7 @@ def toggle_like(place_id):
         db.session.add(new_like)
         db.session.commit()
 
-    return redirect(url_for('liked_places'))
+    return redirect(url_for('liked'))
 
 @app.route('/submit_rating_feedback/<int:place_id>', methods=['POST'])
 @login_required
@@ -576,5 +576,14 @@ def delete_trip(trip_id):
     db.session.commit()
 
     return redirect(url_for('trips'))
+
+
+@app.route('/chatbot', methods=['GET', 'POST'])
+def chatbot_page():
+    response = ""
+    if request.method == 'POST':
+        user_input = request.form.get("message")
+        response = chatbot(user_input)  # from your ML model
+    return render_template('chatbot.html', response=response)
 
 
