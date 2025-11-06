@@ -83,6 +83,7 @@ def insert_places():
 
             {"name": "Bishnupur", "description": "Famous for terracotta temples and Baluchari sarees, it’s a cultural gem.", "state": "West Bengal"},
             {"name": "Jaldapara Wildlife Sanctuary", "description": "A forested area in north Bengal known for elephants and one-horned rhinos.", "state": "West Bengal"},
+            {"name": "Taki", "description": "A serene riverside town near Bangladesh border ideal for weekend getaways.", "state": "West Bengal"},
             {"name": "Taki", "description": "A serene riverside town near Bangladesh border ideal for weekend getaways.", "state": "West Bengal"}
         ]
 
