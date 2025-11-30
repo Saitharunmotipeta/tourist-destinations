@@ -20,7 +20,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
-app.config["SECRET_KEY"] = "ashborn"
+app.config["SECRET_KEY"] = "saitharun"
 app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
 
 db.init_app(app)
