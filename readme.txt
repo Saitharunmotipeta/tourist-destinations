@@ -33,6 +33,7 @@ Discover and explore popular tourist destinations and lesser-known hidden gems w
    ```bash
    flask run
    ```
+5. Open Localhost:8000 for output
 
 ## Usage
 - Access the platform at `http://127.0.0.1:5000` after starting the Flask server.
